@@ -17,7 +17,11 @@
         
         <ul>
             <s:iterator status="status" value="matchs">
-                <li><s:property value="sport"/> entre <s:property value="equipe1"/> et <s:property value="equipe2" /></li>
+                <li><s:property value="sport"/> entre <s:property value="equipe1"/> et <s:property value="equipe2" />
+                    <a href="<s:url action="fairePari">
+                        <s:param name="idMatch"><s:property value="idMatch"/></s:param>
+                       </s:url>"><s:text name="Pari.parier"/></a>
+                </li>
             </s:iterator>
         </ul>
     </body>

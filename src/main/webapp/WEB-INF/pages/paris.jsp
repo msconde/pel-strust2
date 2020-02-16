@@ -10,10 +10,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title><s:text name="Paris.paris"/> - <s:text name="SiteWeb.nom"/></title>
+        <title><s:text name="Pari.paris"/> - <s:text name="SiteWeb.nom"/></title>
     </head>
     <body>
-        <h1><s:text name="Paris.paris"/></h1>
+        <h1><s:text name="Pari.paris"/></h1>
 
         <ul>        
         <s:iterator status="status" value="mesParis">

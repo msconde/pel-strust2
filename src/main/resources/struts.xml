@@ -59,6 +59,18 @@ THE SOFTWARE.
         <action name="matchs" class="fr.orleans.univ.pel.utilisateur.Matchs">
             <result>/WEB-INF/pages/matchs.jsp</result>
         </action>
+        
+        <action name="fairePari" class="fr.orleans.univ.pel.utilisateur.FairePari">
+            <result name="success">/WEB-INF/pages/parier.jsp</result>
+            <result name="input">/WEB-INF/pages/index.jsp</result>
+        </action>
+        
+        <action name="confirmerPari" class="fr.orleans.univ.pel.utilisateur.ConfirmerPari">
+            <result name="success">/WEB-INF/pages/portail.jsp</result>
+            <result name="home">/WEB-INF/pages/home.jsp</result>
+            <result name="input">/WEB-INF/pages/parier.jsp</result>
+        </action>
+
     </package>
 
 </struts>
