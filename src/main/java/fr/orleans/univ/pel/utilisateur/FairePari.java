@@ -138,7 +138,7 @@ public class FairePari extends PelActionSupport {
      * Cette méthode est appelée par Struts 2
      * afin de permettre à la JSP de compléter
      * le menu déroulant du formulaire.
-     * @return 
+     * @return la collection d'équipes.
      */
     public Collection<String> getEquipes()
     {
