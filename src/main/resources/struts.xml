@@ -46,6 +46,11 @@ THE SOFTWARE.
             <result name="success">/WEB-INF/pages/portail.jsp</result>
             <result name="input">/WEB-INF/pages/connexion.jsp</result>
         </action>
+        
+        <action name="paris" class="fr.orleans.univ.pel.utilisateur.Paris">
+            <result name="success">/WEB-INF/pages/paris.jsp</result>
+            <result name="input">/WEB-INF/pages/index.jsp</result>
+        </action>
     </package>
 
 </struts>

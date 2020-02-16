@@ -21,30 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package fr.orleans.univ.pel.connexion;
+package fr.orleans.univ.pel.utilisateur;
 
 import com.opensymphony.xwork2.ActionSupport;
 import facade.FacadeParis;
 import facade.FacadeParisStaticImpl;
-import facade.exceptions.InformationsSaisiesIncoherentesException;
-import facade.exceptions.UtilisateurDejaConnecteException;
+import java.util.Collection;
 import java.util.Map;
-import modele.Utilisateur;
+import modele.Pari;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
- * Action dédiée à l'authentification.
- * 
- * Cette action permet la connexion de l'utilisateur
- * depuis le formulaire d'authentification.
- * 
- * Les couples pseudonyme/mot de passe valides sont
- * stockés en dur dans le modèle.
+ * Action d'affichage des paris.
  * 
  * @author DirectX-Box
  */
-public class Authentification extends ActionSupport implements
+public class Paris extends ActionSupport implements
         ApplicationAware, SessionAware {
     
     /**
@@ -64,26 +57,23 @@ public class Authentification extends ActionSupport implements
     private Map<String, Object> session;
     
     /**
-     * Le pseudonyme de l'utilisateur.
+     * Les paris de l'utilisateur.
      * 
-     * Cette variable est automatiquement créée
-     * quand l'utilisateur valide le formulaire.
-     * 
-     * Elle nécessite une méthode setPseudonyme()
-     * pour fonctionner.
+     * Cette collection contient les paris
+     * de l'utilisateur. La méthode
+     * getMesParis() permet à la JSP
+     * de récupérer automatiquement
+     * les paris.
      */
-    private String pseudonyme;
+    private Collection<Pari> mesParis;
     
     /**
-     * Le mot de passe de l'utilisateur.
+     * Le pseudonyme de l'utilisateur.
      * 
-     * Cette variable est automatiquement créée
-     * quand l'utilisateur valide le formulaire.
-     * 
-     * Elle nécessite une méthode setMotDePasse()
-     * pour fonctionner.
+     * Elle nécessite une méthode getPseudonyme()
+     * pour permettre à la JSP de le récupérer.
      */
-    private String motDePasse;
+    private String pseudonyme;
     
     /**
      * Le code de l'action.
@@ -97,55 +87,10 @@ public class Authentification extends ActionSupport implements
     public String execute()
     {
         FacadeParis modele = this.getModele();
-        try
-        {
-            Utilisateur u = modele.connexion(pseudonyme, motDePasse);
-        }
-        catch(UtilisateurDejaConnecteException ex)
-        {
-            return "success";
-        }
-        catch (InformationsSaisiesIncoherentesException ex) {
-            return "input";
-        }
-        this.session.put("pseudonyme", this.pseudonyme);
+        this.pseudonyme = (String) this.session.get("pseudonyme");
+        if(this.pseudonyme == null) return "input";
+        this.mesParis = modele.getMesParis(this.pseudonyme);
         return "success";
-    }
-    
-    /**
-     * Retourne le pseudonyme de l'utilisateur.
-     * 
-     * @return le pseudonyme.
-     */
-    public String getPseudonyme()
-    {
-        return this.pseudonyme;
-    }
-    
-    /**
-     * Fixe le pseudonyme de l'utilisateur.
-     * 
-     * Cette méthode est appelée automatiquement
-     * par Struts 2 lors de l'invocation de
-     * l'action.
-     * @param p le pseudonyme du formulaire.
-     */
-    public void setPseudonyme(String p)
-    {
-        this.pseudonyme = p;
-    }
-    
-    /**
-     * Fixe le mot de passe de l'utilisateur.
-     * 
-     * Cette méthode est appelée automatiquement
-     * par Struts 2 lors de l'invocation de
-     * l'action.
-     * @param m le mot de passe du formulaire.
-     */
-    public void setMotDePasse(String m)
-    {
-        this.motDePasse = m;
     }
     
     /**
@@ -168,6 +113,28 @@ public class Authentification extends ActionSupport implements
             this.application.put("modele", modele);
         }
         return modele;
+    }
+    
+    /**
+     * Retourne la collection des paris de l'utilisateur.
+     * 
+     * Cette méthode est utilisée automatiquement par
+     * Struts 2 lors de la génération de la JSP.
+     * @return la collection des paris.
+     */
+    public Collection<Pari> getMesParis()
+    {
+        return this.mesParis;
+    }
+    
+    /**
+     * Retourne le pseudonyme de l'utilisateur.
+     * 
+     * @return le pseudonyme.
+     */
+    public String getPseudonyme()
+    {
+        return this.pseudonyme;
     }
 
     /**
@@ -197,4 +164,5 @@ public class Authentification extends ActionSupport implements
     public void setSession(Map<String, Object> map) {
         this.session = map;
     }
+    
 }

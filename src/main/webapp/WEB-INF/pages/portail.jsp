@@ -10,10 +10,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><s:text name="Portail.portail"/> - <s:text name="SiteWeb.nom"/></title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <p><s:property value="pseudonyme"/></p>
+        <h1><s:text name="Portail.portail"/></h1>
+        <h2><s:text name="Portail.bienvenue"/> <s:property value="pseudonyme"/></h2>
+        <ul>
+            <li><a href="<s:url action="paris"/>"><s:text name="Portail.voirParis"/></a></li>
+        </ul>
     </body>
 </html>
