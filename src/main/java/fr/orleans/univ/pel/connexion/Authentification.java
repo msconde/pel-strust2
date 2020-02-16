@@ -24,12 +24,23 @@
 package fr.orleans.univ.pel.connexion;
 
 import com.opensymphony.xwork2.ActionSupport;
+import facade.FacadeParis;
+import facade.FacadeParisStaticImpl;
+import facade.exceptions.InformationsSaisiesIncoherentesException;
+import facade.exceptions.UtilisateurDejaConnecteException;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modele.Utilisateur;
+import org.apache.struts2.interceptor.ApplicationAware;
 
 /**
  *
  * @author DirectX-Box
  */
-public class Authentification extends ActionSupport {
+public class Authentification extends ActionSupport implements ApplicationAware {
+    
+    private Map<String, Object> application;
     
     private String pseudonyme;
     private String motDePasse;
@@ -37,6 +48,19 @@ public class Authentification extends ActionSupport {
     @Override
     public String execute()
     {
+        FacadeParis modele = this.getModele();
+        try
+        {
+            Utilisateur u = modele.connexion(pseudonyme, motDePasse);
+        }
+        catch(UtilisateurDejaConnecteException ex)
+        {
+            return "success";
+        }
+        catch (InformationsSaisiesIncoherentesException ex) {
+            return "input";
+        }
+        modele.deconnexion(pseudonyme);
         return "success";
     }
     
@@ -53,5 +77,21 @@ public class Authentification extends ActionSupport {
     public void setMotDePasse(String m)
     {
         this.motDePasse = m;
+    }
+    
+    public FacadeParis getModele()
+    {
+        FacadeParis modele = (FacadeParis) this.application.get("modele");
+        if(modele == null)
+        {
+            modele = new FacadeParisStaticImpl();
+            this.application.put("modele", modele);
+        }
+        return modele;
+    }
+
+    @Override
+    public void setApplication(Map<String, Object> map) {
+        this.application = map;
     }
 }
