@@ -23,15 +23,11 @@
  */
 package fr.orleans.univ.pel.connexion;
 
-import com.opensymphony.xwork2.ActionSupport;
 import facade.FacadeParis;
-import facade.FacadeParisStaticImpl;
 import facade.exceptions.InformationsSaisiesIncoherentesException;
 import facade.exceptions.UtilisateurDejaConnecteException;
-import java.util.Map;
+import fr.orleans.univ.pel.support.PelActionSupport;
 import modele.Utilisateur;
-import org.apache.struts2.interceptor.ApplicationAware;
-import org.apache.struts2.interceptor.SessionAware;
 
 /**
  * Action dédiée à l'authentification.
@@ -44,35 +40,7 @@ import org.apache.struts2.interceptor.SessionAware;
  * 
  * @author DirectX-Box
  */
-public class Authentification extends ActionSupport implements
-        ApplicationAware, SessionAware {
-    
-    /**
-     * La Map stockant les éléments globaux de l'application.
-     * 
-     * Celle-ci est automatiquement créée via la méthode setApplication(),
-     * qui est fournie par l'interface ApplicationAware.
-     */
-    private Map<String, Object> application;
-    
-    /**
-     * La Map stockant les éléments de session.
-     * 
-     * Celle-ci est automatiquement créée via la méthode setSession(),
-     * qui est fournie par l'interface SessionAware.
-     */
-    private Map<String, Object> session;
-    
-    /**
-     * Le pseudonyme de l'utilisateur.
-     * 
-     * Cette variable est automatiquement créée
-     * quand l'utilisateur valide le formulaire.
-     * 
-     * Elle nécessite une méthode setPseudonyme()
-     * pour fonctionner.
-     */
-    private String pseudonyme;
+public class Authentification extends PelActionSupport {
     
     /**
      * Le mot de passe de l'utilisateur.
@@ -99,7 +67,7 @@ public class Authentification extends ActionSupport implements
         FacadeParis modele = this.getModele();
         try
         {
-            Utilisateur u = modele.connexion(pseudonyme, motDePasse);
+            Utilisateur u = modele.connexion(this.pseudonyme, motDePasse);
         }
         catch(UtilisateurDejaConnecteException ex)
         {
@@ -127,29 +95,6 @@ public class Authentification extends ActionSupport implements
     }
     
     /**
-     * Retourne le pseudonyme de l'utilisateur.
-     * 
-     * @return le pseudonyme.
-     */
-    public String getPseudonyme()
-    {
-        return this.pseudonyme;
-    }
-    
-    /**
-     * Fixe le pseudonyme de l'utilisateur.
-     * 
-     * Cette méthode est appelée automatiquement
-     * par Struts 2 lors de l'invocation de
-     * l'action.
-     * @param p le pseudonyme du formulaire.
-     */
-    public void setPseudonyme(String p)
-    {
-        this.pseudonyme = p;
-    }
-    
-    /**
      * Fixe le mot de passe de l'utilisateur.
      * 
      * Cette méthode est appelée automatiquement
@@ -160,55 +105,5 @@ public class Authentification extends ActionSupport implements
     public void setMotDePasse(String m)
     {
         this.motDePasse = m;
-    }
-    
-    /**
-     * Retourne une instance du modèle.
-     * 
-     * Le modèle est stocké dans les variables globales
-     * de l'application.
-     * 
-     * S'il est introuvable dans les variables globales,
-     * alors on le crée et on l'ajoute dans ces variables.
-     * 
-     * @return l'instance du modèle.
-     */
-    public FacadeParis getModele()
-    {
-        FacadeParis modele = (FacadeParis) this.application.get("modele");
-        if(modele == null)
-        {
-            modele = new FacadeParisStaticImpl();
-            this.application.put("modele", modele);
-        }
-        return modele;
-    }
-
-    /**
-     * Fixe la Map des variables globales.
-     * 
-     * Cette méthode est héritée de l'interface
-     * ApplicationAware, et est automatiquement
-     * appelée par Struts 2 lors de l'invocation
-     * de l'action.
-     * @param map la Map des variables globales.
-     */
-    @Override
-    public void setApplication(Map<String, Object> map) {
-        this.application = map;
-    }
-
-    /**
-     * Fixe la Map des variables de session.
-     * 
-     * Cette méthode est héritée de l'interface
-     * SessionAware, et est automatiquement
-     * appelée par Struts 2 lors de l'invocation
-     * de l'action.
-     * @param map la Map des variables de session.
-     */
-    @Override
-    public void setSession(Map<String, Object> map) {
-        this.session = map;
     }
 }
