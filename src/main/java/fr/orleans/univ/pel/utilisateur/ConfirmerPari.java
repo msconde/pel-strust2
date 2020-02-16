@@ -130,7 +130,7 @@ public class ConfirmerPari extends PelActionSupport {
      * Cette méthode est appelée
      * automatiquement par Struts 2
      * quand l'action est invoquée.
-     * @param v 
+     * @param v le vainqueur.
      */
     public void setVainqueur(String v)
     {
@@ -152,7 +152,7 @@ public class ConfirmerPari extends PelActionSupport {
      * Cette méthode est appelée
      * automatiquement lorsque
      * l'action est invoquée.
-     * @param m 
+     * @param m le montant.
      */
     
     public void setMontant(double m)
