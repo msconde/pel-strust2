@@ -70,6 +70,12 @@ THE SOFTWARE.
             <result name="home">/WEB-INF/pages/home.jsp</result>
             <result name="input">/WEB-INF/pages/parier.jsp</result>
         </action>
+        
+        <action name="annulerPari" class="fr.orleans.univ.pel.utilisateur.AnnulerPari">
+            <result name="success">/WEB-INF/pages/portail.jsp</result>
+            <result name="input">/WEB-INF/pages/portail.jsp</result>
+            <result name="hom">/WEB-INF/pages/index.jsp</result>
+        </action>
 
     </package>
 

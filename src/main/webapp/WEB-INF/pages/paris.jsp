@@ -19,6 +19,11 @@
         <s:iterator status="status" value="mesParis">
             <li><p>Match : <s:property value="match.sport"/> entre <s:property value="match.equipe1"/> et <s:property value="match.equipe2"/></p>
                 <p><s:property value="montant"/> € sur <s:property value="vainqueur"/></p>
+                <p><a href="<s:url action="annulerPari">
+                                <s:param name="idPari">
+                                    <s:property value="match.idMatch"/>
+                                </s:param>
+                            </s:url>"><s:text name="Pari.annuler"/></a></p>
             </li>
         </s:iterator>
         </ul>
