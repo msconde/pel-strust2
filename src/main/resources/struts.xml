@@ -37,6 +37,10 @@ THE SOFTWARE.
         <action name="index">
             <result>/WEB-INF/pages/index.jsp</result>
         </action>
+        
+        <action name="connexion">
+            <result>/WEB-INF/pages/connexion.jsp</result>
+        </action>
     </package>
 
 </struts>

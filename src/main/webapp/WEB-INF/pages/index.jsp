@@ -15,5 +15,8 @@
     <body>
         <h1><s:text name="Accueil.accueil"/></h1>
         <p><s:text name="Accueil.bienvenue"/></p>
+        <ul>
+            <li><a href="<s:url action="connexion" />"><s:text name="Connexion.connexion"/></a></li>
+        </ul>
     </body>
 </html>
