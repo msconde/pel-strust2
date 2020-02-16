@@ -26,19 +26,18 @@ package fr.orleans.univ.pel.utilisateur;
 import com.opensymphony.xwork2.ActionSupport;
 import facade.FacadeParis;
 import facade.FacadeParisStaticImpl;
-import facade.exceptions.MatchClosException;
-import facade.exceptions.ResultatImpossibleException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modele.Match;
 import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
- *
+ * Action gérant le clic sur
+ * le lien "Parier" sur la liste
+ * des matchs.
+ * 
  * @author DirectX-Box
  */
 public class FairePari extends ActionSupport implements
@@ -71,11 +70,42 @@ public class FairePari extends ActionSupport implements
      */
     private String pseudonyme;
     
+    /**
+     * L'ID du match sur lequel parier.
+     * 
+     * Ce champ est automatiquement rempli
+     * par Struts 2 via la méthode setIdMatch()
+     * quand l'action est invoquée.
+     */
     private long idMatch;
+    
+    /**
+     * L'objet du Match sur lequel parier.
+     * 
+     * Ce champ est automatiquement
+     * récupéré pour la génération
+     * de la JSP.
+     */
     private Match match;
+    
+    /**
+     * La collection des équipes du match.
+     * 
+     * Ce champ est utilisé pour générer
+     * le menu déroulant des vainqueurs
+     * à travers la méthode getEquipes().
+     */
     Collection<String> equipes;
     
     
+    /**
+     * Le code de l'action.
+     * 
+     * Cette méthode est automatiquement appelée
+     * par Struts 2 lorsque l'action est invoquée.
+     * 
+     * @return "success" si l'action a réussi, "input" sinon.
+     */
     @Override
     public String execute()
     {
@@ -91,21 +121,56 @@ public class FairePari extends ActionSupport implements
         return "success";
     }
     
+    /**
+     * Retourne l'ID du match.
+     * 
+     * Cette méthode est nécessaire
+     * pour permettre au formulaire
+     * de la JSP de connaître
+     * l'ID du match.
+     * 
+     * @return l'ID du match.
+     */
     public long getIdMatch()
     {
         return this.idMatch;
     }
     
+    /**
+     * Fixe l'ID du match.
+     * 
+     * Cette méthode est appelée
+     * par Struts 2 quand l'utilisateur
+     * clique sur "Parier".
+     * @param id l'ID du match.
+     */
     public void setIdMatch(long id)
     {
         this.idMatch = id;
     }
     
+    /**
+     * Retourne l'objet Match.
+     * 
+     * Cette méthode permet à la JSP
+     * de récupérer les attributs
+     * du Match.
+     * 
+     * @return l'objet Match.
+     */
     public Match getMatch()
     {
         return this.match;
     }
     
+    /**
+     * Retourne la collection d'équipes.
+     * 
+     * Cette méthode est appelée par Struts 2
+     * afin de permettre à la JSP de compléter
+     * le menu déroulant du formulaire.
+     * @return 
+     */
     public Collection<String> getEquipes()
     {
         return this.equipes;

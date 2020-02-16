@@ -32,7 +32,11 @@ import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
- *
+ * Action d'nnulation des paris.
+ * 
+ * Cette action gère l'annulation d'un pari
+ * depuis la liste des paris.
+ * 
  * @author DirectX-Box
  */
 public class AnnulerPari extends ActionSupport implements
@@ -64,8 +68,24 @@ public class AnnulerPari extends ActionSupport implements
      * pour fonctionner.
      */
     private String pseudonyme;
+    
+    /**
+     * L'ID du pari à annuler.
+     * 
+     * Cet identifiant est rempli
+     * automatiquement par Struts 2
+     * à l'aide de la méthode setIdPari().
+     */
     private long idPari;
     
+    /**
+     * Le code de l'action.
+     * 
+     * Cette méthode est automatiquement appelée
+     * par Struts 2 lorsque l'action est invoquée.
+     * 
+     * @return "success" si l'action a réussi, "input" sinon.
+     */
     @Override
     public String execute()
     {
@@ -80,11 +100,24 @@ public class AnnulerPari extends ActionSupport implements
         return "success";
     }
     
+    /**
+     * Retourne l'ID du pari.
+     * 
+     * @return l'ID du pari.
+     */
     public long getIdPari()
     {
         return this.idPari;
     }
     
+    /**
+     * Fixe l'ID du pari.
+     * 
+     * Cette méthode est appelée
+     * par Struts 2 lors de
+     * l'invocation de l'action.
+     * @param id l'ID du pari.
+     */
     public void setIdPari(long id)
     {
         this.idPari = id;

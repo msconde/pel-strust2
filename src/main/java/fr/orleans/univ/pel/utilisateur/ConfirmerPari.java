@@ -35,7 +35,12 @@ import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 /**
- *
+ * Action gérant la confirmation d'un pari.
+ * 
+ * Cette action gère le formulaire apparaissant
+ * après avoir cliqué sur le bouton "Parier" sur
+ * la liste des matchs.
+ * 
  * @author DirectX-Box
  */
 public class ConfirmerPari extends ActionSupport implements 
@@ -68,10 +73,43 @@ public class ConfirmerPari extends ActionSupport implements
      */
     private String pseudonyme;
     
+    /**
+     * L'ID du match.
+     * 
+     * Struts 2 remplit automatiquement
+     * ce champ lorsque l'action est invoquée.
+     */
     private int idMatch;
+    
+    /**
+     * Le vainqueur sélectionné dans
+     * le formulaire.
+     * 
+     * Struts 2 remplit automatiquement
+     * ce champ via la méthode setVainqueur()
+     * lors de l'invocation de l'action.
+     */
     private String vainqueur;
+    
+    /**
+     * Le montant choisi par
+     * l'utilisateur.
+     * 
+     * Cette variable est remplie
+     * par Struts 2 lors de l'invocation
+     * de l'action grâce à la méthode
+     * setMontant().
+     */
     private double montant;
     
+    /**
+     * Le code de l'action.
+     * 
+     * Cette méthode est automatiquement appelée
+     * par Struts 2 lorsque l'action est invoquée.
+     * 
+     * @return "success" si l'action a réussi, "input" sinon.
+     */
     @Override
     public String execute()
     {
@@ -89,30 +127,67 @@ public class ConfirmerPari extends ActionSupport implements
         return "success";
     }
     
+    /**
+     * Retourne l'ID du match.
+     * @return l'ID du match.
+     */
     public int getIdMatch()
     {
         return this.idMatch;
     }
     
+    /**
+     * Fixe l'ID du match.
+     * 
+     * Cette méthode est appelée
+     * automatiquement par Struts 2
+     * quand l'action est instanciée.
+     * @param id l'ID du match.
+     */
     public void setIdMatch(int id)
     {
         this.idMatch = id;
     }
     
+    /**
+     * Retourne le vainqueur sélectionné.
+     * @return le vainqueur.
+     */
     public String getVainqueur()
     {
         return this.vainqueur;
     }
     
+    /**
+     * Fixe le vainqueur sélectionné.
+     * 
+     * Cette méthode est appelée
+     * automatiquement par Struts 2
+     * quand l'action est invoquée.
+     * @param v 
+     */
     public void setVainqueur(String v)
     {
         this.vainqueur = v;
     }
     
+    /**
+     * Retourne le montant sélectionné.
+     * @return le montant.
+     */
     public double getMontant()
     {
         return this.montant;
     }
+    
+    /**
+     * Fixe le montant sélectionné.
+     * 
+     * Cette méthode est appelée
+     * automatiquement lorsque
+     * l'action est invoquée.
+     * @param m 
+     */
     
     public void setMontant(double m)
     {

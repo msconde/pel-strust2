@@ -32,7 +32,7 @@ import modele.Match;
 import org.apache.struts2.interceptor.ApplicationAware;
 
 /**
- *
+ * Action gérant l'affichage des matchs.
  * @author DirectX-Box
  */
 public class Matchs extends ActionSupport implements ApplicationAware {
