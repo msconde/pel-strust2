@@ -71,7 +71,7 @@ public class FairePari extends ActionSupport implements
      */
     private String pseudonyme;
     
-    private int idMatch;
+    private long idMatch;
     private Match match;
     Collection<String> equipes;
     
@@ -91,12 +91,12 @@ public class FairePari extends ActionSupport implements
         return "success";
     }
     
-    public int getIdMatch()
+    public long getIdMatch()
     {
         return this.idMatch;
     }
     
-    public void setIdMatch(int id)
+    public void setIdMatch(long id)
     {
         this.idMatch = id;
     }
