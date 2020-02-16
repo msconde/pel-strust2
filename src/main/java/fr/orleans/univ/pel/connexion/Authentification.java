@@ -31,10 +31,27 @@ import com.opensymphony.xwork2.ActionSupport;
  */
 public class Authentification extends ActionSupport {
     
+    private String pseudonyme;
+    private String motDePasse;
+    
     @Override
     public String execute()
     {
         return "success";
     }
     
+    public String getPseudonyme()
+    {
+        return this.pseudonyme;
+    }
+    
+    public void setPseudonyme(String p)
+    {
+        this.pseudonyme = p;
+    }
+    
+    public void setMotDePasse(String m)
+    {
+        this.motDePasse = m;
+    }
 }

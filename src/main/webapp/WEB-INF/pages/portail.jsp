@@ -14,5 +14,6 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <p><s:property value="pseudonyme"/></p>
     </body>
 </html>
