@@ -14,5 +14,11 @@
     </head>
     <body>
         <h1><s:text name="Connexion.connexion" /></h1>
+        
+        <s:form action="authentification">
+            <s:textfield name="pseudonyme" key="Connexion.pseudonyme"/>
+            <s:password name="motDePasse" key="Connexion.motDePasse"/>
+            <s:submit />
+        </s:form>
     </body>
 </html>

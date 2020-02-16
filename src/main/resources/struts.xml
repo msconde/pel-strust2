@@ -41,6 +41,11 @@ THE SOFTWARE.
         <action name="connexion">
             <result>/WEB-INF/pages/connexion.jsp</result>
         </action>
+        
+        <action name="authentification" class="fr.orleans.univ.pel.connexion.Authentification">
+            <result name="success">/WEB-INF/pages/portail.jsp</result>
+            <result name="input">/WEB-INF/pages/connexion.jsp</result>
+        </action>
     </package>
 
 </struts>
