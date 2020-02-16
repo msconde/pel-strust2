@@ -112,6 +112,20 @@ public class Authentification extends ActionSupport implements
         return "success";
     }
     
+    @Override
+    public void validate()
+    {
+        if(this.pseudonyme.length() == 0)
+        {
+            this.addFieldError("pseudonyme", this.getText("Connexion.pseudoRequis"));
+        }
+        
+        if(this.motDePasse.length() == 0)
+        {
+            this.addFieldError("motDePasse", this.getText("Connexion.mdpRequis"));
+        }
+    }
+    
     /**
      * Retourne le pseudonyme de l'utilisateur.
      * 
