@@ -51,6 +51,10 @@ THE SOFTWARE.
             <result name="success">/WEB-INF/pages/paris.jsp</result>
             <result name="input">/WEB-INF/pages/index.jsp</result>
         </action>
+        
+        <action name="deconnexion" class="fr.orleans.univ.pel.connexion.Deconnexion">
+            <result>/WEB-INF/pages/index.jsp</result>
+        </action>
     </package>
 
 </struts>

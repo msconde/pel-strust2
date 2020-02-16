@@ -17,6 +17,7 @@
         <h2><s:text name="Portail.bienvenue"/> <s:property value="pseudonyme"/></h2>
         <ul>
             <li><a href="<s:url action="paris"/>"><s:text name="Portail.voirParis"/></a></li>
+            <li><a href="<s:url action="deconnexion"/>"><s:text name="Connexion.deconnexion"/></a></li>
         </ul>
     </body>
 </html>
