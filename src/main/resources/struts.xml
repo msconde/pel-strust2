@@ -55,6 +55,10 @@ THE SOFTWARE.
         <action name="deconnexion" class="fr.orleans.univ.pel.connexion.Deconnexion">
             <result>/WEB-INF/pages/index.jsp</result>
         </action>
+        
+        <action name="matchs" class="fr.orleans.univ.pel.utilisateur.Matchs">
+            <result>/WEB-INF/pages/matchs.jsp</result>
+        </action>
     </package>
 
 </struts>
