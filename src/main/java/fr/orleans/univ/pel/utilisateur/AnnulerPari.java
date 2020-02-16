@@ -23,51 +23,19 @@
  */
 package fr.orleans.univ.pel.utilisateur;
 
-import com.opensymphony.xwork2.ActionSupport;
 import facade.FacadeParis;
-import facade.FacadeParisStaticImpl;
 import facade.exceptions.OperationNonAuthoriseeException;
-import java.util.Map;
-import org.apache.struts2.interceptor.ApplicationAware;
-import org.apache.struts2.interceptor.SessionAware;
+import fr.orleans.univ.pel.support.PelActionSupport;
 
 /**
- * Action d'nnulation des paris.
+ * Action d'annulation des paris.
  * 
  * Cette action gère l'annulation d'un pari
  * depuis la liste des paris.
  * 
  * @author DirectX-Box
  */
-public class AnnulerPari extends ActionSupport implements
-        ApplicationAware, SessionAware {
-    
-    /**
-     * La Map stockant les éléments globaux de l'application.
-     * 
-     * Celle-ci est automatiquement créée via la méthode setApplication(),
-     * qui est fournie par l'interface ApplicationAware.
-     */
-    private Map<String, Object> application;
-    
-    /**
-     * La Map stockant les éléments de session.
-     * 
-     * Celle-ci est automatiquement créée via la méthode setSession(),
-     * qui est fournie par l'interface SessionAware.
-     */
-    private Map<String, Object> session;
-    
-    /**
-     * Le pseudonyme de l'utilisateur.
-     * 
-     * Cette variable est automatiquement créée
-     * quand l'utilisateur valide le formulaire.
-     * 
-     * Elle nécessite une méthode setPseudonyme()
-     * pour fonctionner.
-     */
-    private String pseudonyme;
+public class AnnulerPari extends PelActionSupport {
     
     /**
      * L'ID du pari à annuler.
@@ -121,55 +89,5 @@ public class AnnulerPari extends ActionSupport implements
     public void setIdPari(long id)
     {
         this.idPari = id;
-    }
-    
-    /**
-     * Retourne une instance du modèle.
-     * 
-     * Le modèle est stocké dans les variables globales
-     * de l'application.
-     * 
-     * S'il est introuvable dans les variables globales,
-     * alors on le crée et on l'ajoute dans ces variables.
-     * 
-     * @return l'instance du modèle.
-     */
-    public FacadeParis getModele()
-    {
-        FacadeParis modele = (FacadeParis) this.application.get("modele");
-        if(modele == null)
-        {
-            modele = new FacadeParisStaticImpl();
-            this.application.put("modele", modele);
-        }
-        return modele;
-    }
-    
-    /**
-     * Fixe la Map des variables globales.
-     * 
-     * Cette méthode est héritée de l'interface
-     * ApplicationAware, et est automatiquement
-     * appelée par Struts 2 lors de l'invocation
-     * de l'action.
-     * @param map la Map des variables globales.
-     */
-    @Override
-    public void setApplication(Map<String, Object> map) {
-        this.application = map;
-    }
-
-    /**
-     * Fixe la Map des variables de session.
-     * 
-     * Cette méthode est héritée de l'interface
-     * SessionAware, et est automatiquement
-     * appelée par Struts 2 lors de l'invocation
-     * de l'action.
-     * @param map la Map des variables de session.
-     */
-    @Override
-    public void setSession(Map<String, Object> map) {
-        this.session = map;
     }
 }

@@ -23,15 +23,12 @@
  */
 package fr.orleans.univ.pel.utilisateur;
 
-import com.opensymphony.xwork2.ActionSupport;
 import facade.FacadeParis;
 import facade.FacadeParisStaticImpl;
+import fr.orleans.univ.pel.support.PelActionSupport;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
 import modele.Match;
-import org.apache.struts2.interceptor.ApplicationAware;
-import org.apache.struts2.interceptor.SessionAware;
 
 /**
  * Action gérant le clic sur
@@ -40,35 +37,7 @@ import org.apache.struts2.interceptor.SessionAware;
  * 
  * @author DirectX-Box
  */
-public class FairePari extends ActionSupport implements
-        ApplicationAware, SessionAware {
-    
-    /**
-     * La Map stockant les éléments globaux de l'application.
-     * 
-     * Celle-ci est automatiquement créée via la méthode setApplication(),
-     * qui est fournie par l'interface ApplicationAware.
-     */
-    private Map<String, Object> application;
-    
-    /**
-     * La Map stockant les éléments de session.
-     * 
-     * Celle-ci est automatiquement créée via la méthode setSession(),
-     * qui est fournie par l'interface SessionAware.
-     */
-    private Map<String, Object> session;
-    
-    /**
-     * Le pseudonyme de l'utilisateur.
-     * 
-     * Cette variable est automatiquement créée
-     * quand l'utilisateur valide le formulaire.
-     * 
-     * Elle nécessite une méthode setPseudonyme()
-     * pour fonctionner.
-     */
-    private String pseudonyme;
+public class FairePari extends PelActionSupport {
     
     /**
      * L'ID du match sur lequel parier.
@@ -197,33 +166,4 @@ public class FairePari extends ActionSupport implements
         }
         return modele;
     }
-
-    /**
-     * Fixe la Map des variables globales.
-     * 
-     * Cette méthode est héritée de l'interface
-     * ApplicationAware, et est automatiquement
-     * appelée par Struts 2 lors de l'invocation
-     * de l'action.
-     * @param map la Map des variables globales.
-     */
-    @Override
-    public void setApplication(Map<String, Object> map) {
-        this.application = map;
-    }
-
-    /**
-     * Fixe la Map des variables de session.
-     * 
-     * Cette méthode est héritée de l'interface
-     * SessionAware, et est automatiquement
-     * appelée par Struts 2 lors de l'invocation
-     * de l'action.
-     * @param map la Map des variables de session.
-     */
-    @Override
-    public void setSession(Map<String, Object> map) {
-        this.session = map;
-    }
-    
 }

@@ -23,38 +23,17 @@
  */
 package fr.orleans.univ.pel.utilisateur;
 
-import com.opensymphony.xwork2.ActionSupport;
 import facade.FacadeParis;
-import facade.FacadeParisStaticImpl;
+import fr.orleans.univ.pel.support.PelActionSupport;
 import java.util.Collection;
-import java.util.Map;
 import modele.Pari;
-import org.apache.struts2.interceptor.ApplicationAware;
-import org.apache.struts2.interceptor.SessionAware;
 
 /**
  * Action d'affichage des paris.
  * 
  * @author DirectX-Box
  */
-public class Paris extends ActionSupport implements
-        ApplicationAware, SessionAware {
-    
-    /**
-     * La Map stockant les éléments globaux de l'application.
-     * 
-     * Celle-ci est automatiquement créée via la méthode setApplication(),
-     * qui est fournie par l'interface ApplicationAware.
-     */
-    private Map<String, Object> application;
-    
-    /**
-     * La Map stockant les éléments de session.
-     * 
-     * Celle-ci est automatiquement créée via la méthode setSession(),
-     * qui est fournie par l'interface SessionAware.
-     */
-    private Map<String, Object> session;
+public class Paris extends PelActionSupport {
     
     /**
      * Les paris de l'utilisateur.
@@ -66,14 +45,6 @@ public class Paris extends ActionSupport implements
      * les paris.
      */
     private Collection<Pari> mesParis;
-    
-    /**
-     * Le pseudonyme de l'utilisateur.
-     * 
-     * Elle nécessite une méthode getPseudonyme()
-     * pour permettre à la JSP de le récupérer.
-     */
-    private String pseudonyme;
     
     /**
      * Le code de l'action.
@@ -94,75 +65,14 @@ public class Paris extends ActionSupport implements
     }
     
     /**
-     * Retourne une instance du modèle.
+     * Retourne la collection de paris.
      * 
-     * Le modèle est stocké dans les variables globales
-     * de l'application.
-     * 
-     * S'il est introuvable dans les variables globales,
-     * alors on le crée et on l'ajoute dans ces variables.
-     * 
-     * @return l'instance du modèle.
-     */
-    public FacadeParis getModele()
-    {
-        FacadeParis modele = (FacadeParis) this.application.get("modele");
-        if(modele == null)
-        {
-            modele = new FacadeParisStaticImpl();
-            this.application.put("modele", modele);
-        }
-        return modele;
-    }
-    
-    /**
-     * Retourne la collection des paris de l'utilisateur.
-     * 
-     * Cette méthode est utilisée automatiquement par
-     * Struts 2 lors de la génération de la JSP.
-     * @return la collection des paris.
+     * Cette méthode est utilisée par
+     * Struts 2 pour générer la JSP.
+     * @return la collection de paris.
      */
     public Collection<Pari> getMesParis()
     {
         return this.mesParis;
     }
-    
-    /**
-     * Retourne le pseudonyme de l'utilisateur.
-     * 
-     * @return le pseudonyme.
-     */
-    public String getPseudonyme()
-    {
-        return this.pseudonyme;
-    }
-
-    /**
-     * Fixe la Map des variables globales.
-     * 
-     * Cette méthode est héritée de l'interface
-     * ApplicationAware, et est automatiquement
-     * appelée par Struts 2 lors de l'invocation
-     * de l'action.
-     * @param map la Map des variables globales.
-     */
-    @Override
-    public void setApplication(Map<String, Object> map) {
-        this.application = map;
-    }
-
-    /**
-     * Fixe la Map des variables de session.
-     * 
-     * Cette méthode est héritée de l'interface
-     * SessionAware, et est automatiquement
-     * appelée par Struts 2 lors de l'invocation
-     * de l'action.
-     * @param map la Map des variables de session.
-     */
-    @Override
-    public void setSession(Map<String, Object> map) {
-        this.session = map;
-    }
-    
 }
