@@ -36,7 +36,7 @@ pacman -S git
 
 ##### Microsoft Windows
 
-Téléchargez l'assistant d'installation depuis le [site officiel du projet Git](https://git-scm.com/ "Accueil du projet Git").
+Téléchargez l'assistant d'installation depuis le [site officiel du projet Git](https://git-scm.com/ "Accueil du projet Git").  
 **Remarque** : L'assistant d'installation nécessite que votre compte Windows possède les droits administrateur
 sur votre machine.
 
@@ -53,7 +53,30 @@ par Maven.
 
 ### Téléchargement
 
-#### 
+```bash
+git clone https://github.com/DirectX-Box/pel-struts2.git
+```
+Un ZIP peut également être téléchargé à travers l'interface Web.
+
+### Installation
+
++ Ouvrez l'onglet [Releases](https://github.com/DirectX-Box/pel-struts2/releases "Releases Paris en ligne")
+et téléchargez le fichier `pelmodele.zip`.
++ Décompressez l'archive dans un répertoire `pelmodele`.
++ Ouvrez le projet dans votre IDE.
++ Effectuez la tâche `maven:install`. La pratique à suivre dépend de l'IDE.
+
+Alternativement, utilisez la commande :
+```bash
+mvn install
+```
+Cependant, cette commande ne fonctionne que si Maven est installé
+sur le système. Généralement, les IDEs fournissent Maven sous
+la forme d'un plug-in.
+
++ Ouvrez le projet `pel-struts2` dans votre IDE.
++ Compilez le projet avec l'action `Build`. Cette action dépend de l'IDE.
++ Effectuez la tâche `jetty:run`. La pratique à suivre dépend de l'IDE.
 
 ### Liens utiles
 
